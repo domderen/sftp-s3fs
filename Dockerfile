@@ -10,7 +10,7 @@ RUN apt-get update && \
     automake \
     curl \
     build-essential \
-    libfuse-dev libcurl4-openssl-dev \
+    libfuse-dev fuse-utils libcurl4-openssl-dev \
     libtool \
     libxml2-dev mime-support \
     pkg-config libssl-dev \
