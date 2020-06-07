@@ -22,7 +22,7 @@ UsePAM no
 # Force sftp and chroot jail
 Subsystem sftp internal-sftp
 ForceCommand internal-sftp
-ChrootDirectory /home/patrycjablindow/sync_to_s3
+ChrootDirectory %h/sync_to_s3
 
 # Enable this for more logs
 LogLevel VERBOSE
