@@ -154,7 +154,7 @@ fi
 mkdir /tmp/cache
 chmod 777 /tmp/cache
 
-eval /usr/bin/s3fs -o allow_other -o use_cache=/tmp/cache -o endpoint=$AWS_REGION $S3_BUCKET_NAME $dirPath
+eval /usr/bin/s3fs -o allow_other -o umask=0007,uid=1000,gid=$gid -o use_cache=/tmp/cache -o endpoint=$AWS_REGION $S3_BUCKET_NAME $dirPath
 
 echo "DEBUG: finished running s3fs"
 
