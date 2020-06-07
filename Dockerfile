@@ -19,16 +19,16 @@ RUN apt-get update && \
     mkdir -p /var/run/sshd && \
     rm -f /etc/ssh/ssh_host_*key*
 
-COPY sshd_config /etc/ssh/sshd_config
-COPY entrypoint /
-COPY README.md /
-
 # - add s3fs_fuse filesystem:
 
 ENV VERSION 1.80
 
 RUN curl -L https://github.com/s3fs-fuse/s3fs-fuse/archive/v${VERSION}.tar.gz | tar zxv -C /usr/src
 RUN cd /usr/src/s3fs-fuse-${VERSION} && ./autogen.sh && ./configure --prefix=/usr && make && make install
+
+COPY README.md /
+COPY sshd_config /etc/ssh/sshd_config
+COPY entrypoint /
 
 EXPOSE 22
 
