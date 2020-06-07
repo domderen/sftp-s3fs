@@ -82,6 +82,7 @@ function createUser() {
             echo "Creating and/or setting permissions on $dirPath"
             mkdir -p $dirPath
             chown -R $user:users $dirPath
+            chmod 777 $dirPath
         done
     fi
 }
@@ -150,8 +151,10 @@ fi
 
 #s3fs_fuse filesystem - only supported in single-user + dir scenario
 
-eval /usr/bin/s3fs -o allow_other -o use_cache=/tmp -o endpoint=$AWS_REGION $S3_BUCKET_NAME $dirPath
-chown -R $user:users $dirPath
+mkdir /tmp/cache
+chmod 777 /tmp/cache
+
+eval /usr/bin/s3fs -o allow_other -o use_cache=/tmp/cache -o endpoint=$AWS_REGION $S3_BUCKET_NAME $dirPath
 
 echo "DEBUG: finished running s3fs"
 
